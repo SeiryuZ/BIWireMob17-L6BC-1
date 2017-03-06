@@ -1,6 +1,6 @@
 # BIWireMob17-L6BC-1
 
-#Restaurant Reservation App
+###Get-Table (Restaurant Reservation App Name still being considered)
 
 #Introduction
 This app is a Iot app like uber and Go-Ojek but for restaurant. Basically this app will allow user to order and even pay first before coming into the restaurant. This app will also help Restaurant owner increasing the efficiency of their restaurant by not having server spending time on taking customer order instead every order will be given through the app itself.
