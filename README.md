@@ -8,31 +8,38 @@ This app is a Iot app like uber and Go-Ojek but for restaurant. Basically this a
 #Project Description 
 **Core features:**
 
+Sign:
+
+* + Will be implemented
+* - Planned feature that may be implented if there is enough time
+
 __Customer Side:__
 
-1. Make Reservation
+1. Make Reservation +
 
-2. Order Menu
+2. Order Menu +
 
-3. Pay bill using App
+3. Pay bill using App -
 
-4. Check the number of seat available
+4. Check the number of seat available +
 
-5. Rate Restaurant
+5. Rate Restaurant +
 
-6. Set Favorite List
+6. Set Favorite List -
 
-7. Write Review/Feedback
+7. Write Review/Feedback -
  
 __Restaurant Side:__
 
-1. Add Menu
+1. Add Menu +
 
-2. Accept or reject Reservation/order
+2. Accept or reject Reservation/order +
 
-3. Place Customer To a Seat
+3. Place Customer To a Seat +
 
-4. See Reservation/Waiting List/Order
+4. See Reservation/Waiting List/Order +
+
+5. Customs Gui interface for premiums -
 
 __App Goals:__
 
