@@ -28,6 +28,8 @@ __Customer Side:__
 6. Set Favorite List -
 
 7. Write Review/Feedback -
+
+8. Login
  
 __Restaurant Side:__
 
@@ -45,4 +47,14 @@ __App Goals:__
 
 1. Increase the efficiency of the restaurant
 
-2. Provide Free Iot system that connect between customer and restaurant 
+2. Provide Free Iot system that connect between customer and restaurant
+
+__Phase 1:__
+
+1. basic gui interface(button that's only lead to certain pages)
+
+2. order menu function
+
+3. Make Reservation function
+
+__Phase 2:__
