@@ -29,7 +29,7 @@ __Customer Side:__
 
 7. Write Review/Feedback -
 
-8. Login
+8. Login +
  
 __Restaurant Side:__
 
@@ -43,11 +43,35 @@ __Restaurant Side:__
 
 5. Customs Gui interface for premiums -
 
+6. Login +
+
 __App Goals:__
 
 1. Increase the efficiency of the restaurant
 
 2. Provide Free Iot system that connect between customer and restaurant
+
+__Pages:__
+
+1. Home
+
+2. Login
+
+3. Search
+
+4. Restaurant
+
+5. Restaurant Menu 
+
+__Pages:__
+
+1. Sales
+
+2. Login
+
+3. Item
+
+4. User  
 
 __Phase 1:__
 
