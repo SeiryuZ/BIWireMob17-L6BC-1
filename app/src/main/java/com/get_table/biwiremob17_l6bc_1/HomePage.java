@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.support.v4.widget.DrawerLayout;
 
 public class HomePage extends AppCompatActivity {
 
@@ -13,7 +14,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         //Title
-        setTitle("Get-Tables");
+        //setTitle("Get-Tables");
     }
 
     public void RestaurantSearchPressed(View view){
@@ -22,7 +23,7 @@ public class HomePage extends AppCompatActivity {
     }
 
     public void  RestaurantPressed(View view){
-        Intent intent = new Intent(this,RestaurantPage.class);
+        Intent intent = new Intent(this,Login.class);
         startActivity(intent);
     }
 

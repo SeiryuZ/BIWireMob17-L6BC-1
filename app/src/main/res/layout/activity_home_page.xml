@@ -47,6 +47,27 @@
             android:layout_below="@+id/searchView3"
             android:layout_alignEnd="@+id/searchView3" />
 
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="168dp"
+            android:layout_height="159dp"
+            app:srcCompat="@drawable/fastfood"
+            android:layout_below="@+id/imageButton"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="41dp"
+            android:onClick="RestaurantPressed"
+            />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="168dp"
+            android:layout_height="159dp"
+            app:srcCompat="@drawable/korea"
+            android:layout_alignTop="@+id/imageButton3"
+            android:layout_alignStart="@+id/imageButton2"
+            android:onClick="RestaurantPressed"
+            />
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
