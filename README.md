@@ -77,8 +77,6 @@ __Phase 1:__
 
 1. basic gui interface(button that's only lead to certain pages)
 
-2. order menu function
-
-3. Make Reservation function
+2. Login 
 
 __Phase 2:__
