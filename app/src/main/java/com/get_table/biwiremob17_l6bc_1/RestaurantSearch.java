@@ -10,7 +10,5 @@ public class RestaurantSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_search);
 
-        //Title
-        setTitle("Get-Tables");
     }
 }

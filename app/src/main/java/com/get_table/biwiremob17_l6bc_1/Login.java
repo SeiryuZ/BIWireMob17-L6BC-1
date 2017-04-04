@@ -21,7 +21,7 @@ public class Login extends AppCompatActivity {
         EditText Password = (EditText)findViewById(R.id.LoginPassword);
 
 
-        if(UserName.getText().toString().equals("admin@gmail.com") || Password.getText().toString().equals("password")){
+        if(UserName.getText().toString().equals("admin") || Password.getText().toString().equals("password")){
             //If Username/Password is Right
 
             Intent intent = new Intent(this,HomePage.class);
@@ -31,6 +31,7 @@ public class Login extends AppCompatActivity {
 
         }
     }
+
 
 
 

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomePage">
+        <activity android:name=".HomePage"
+            android:label="@string/title_activity_home_page"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,8 +20,8 @@
         </activity>
         <activity android:name=".RestaurantSearch" />
         <activity android:name=".RestaurantPage" />
-        <activity android:name=".Login" />
-        <activity android:name=".Register"></activity>
+        <activity android:name=".Register" />
+        <activity android:name=".Login"/>
     </application>
 
 </manifest>

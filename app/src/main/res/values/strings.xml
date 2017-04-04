@@ -14,4 +14,13 @@
     <string name="login">Login</string>
     <string name="signup">SignUp</string>
     <string name="register">Register</string>
+    <string name="title_activity_home_page">HomePage</string>
+
+    //HomePage
+    <string name="cuisine">Cuisine</string>
+    //Drawer
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
