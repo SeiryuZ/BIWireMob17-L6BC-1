@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".RestaurantSearch" />
         <activity android:name=".RestaurantPage"/>
-        <activity android:name=".Login" />
+        <activity android:name=".AuthenthicationActivity" />
     </application>
 
 </manifest>

@@ -129,7 +129,7 @@ public class HomePage extends AppCompatActivity
         startActivity(intent);
     }
     public void  LoginPressed(View view){
-        Intent intent = new Intent(this,Login.class);
+        Intent intent = new Intent(this,AuthenthicationActivity.class);
         startActivity(intent);
     }
 }

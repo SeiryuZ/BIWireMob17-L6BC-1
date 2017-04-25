@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context="com.get_table.biwiremob17_l6bc_1.AuthenthicationActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -69,9 +70,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@color/colorAccent"
-            android:text="@string/btn_login"
-            android:textColor="@android:color/black"
             android:onClick="SignInClicked"
+            android:text="@string/btn_login"
+            android:textColor="@android:color/black" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/login_with_google"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             />
 
         <Button

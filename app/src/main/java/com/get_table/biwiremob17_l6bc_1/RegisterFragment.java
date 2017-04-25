@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 /**
  * Created by albertcahyawan on 4/4/2017.
@@ -19,6 +20,8 @@ public class RegisterFragment extends Fragment {
 
     View myView;
 
+    private ProgressBar progressBar;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -26,6 +29,9 @@ public class RegisterFragment extends Fragment {
 
         //Allow Action Bar
         setHasOptionsMenu(true);
+
+
+        progressBar = (ProgressBar) myView.findViewById(R.id.progressBar);
 
 
         return myView;

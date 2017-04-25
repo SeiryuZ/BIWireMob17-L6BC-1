@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context="com.get_table.biwiremob17_l6bc_1.AuthenthicationActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"

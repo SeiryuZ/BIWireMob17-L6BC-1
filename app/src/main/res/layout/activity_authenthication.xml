@@ -4,15 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.get_table.biwiremob17_l6bc_1.Login"
-    >
+    tools:context="com.get_table.biwiremob17_l6bc_1.AuthenthicationActivity">
 
     <FrameLayout
         android:id="@+id/Login_Frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
-    </FrameLayout>
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"></FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
