@@ -44,6 +44,7 @@ public class HomePage extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //Set Homepage
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.Content_Frame,new HomeFragement())
@@ -94,12 +95,21 @@ public class HomePage extends AppCompatActivity
                     .replace(R.id.Content_Frame
                     , new HomeFragement())
                     .commit();
-        } else if (id == R.id.nav_aboutus) {
+        }  else if (id == R.id.nav_history) {
             fragmentManager.beginTransaction()
                     .replace(R.id.Content_Frame
-                            , new AboutUsFragement())
+                            , new HistoryFragement())
                     .commit();
-
+        } else if (id == R.id.nav_order) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.Content_Frame
+                            , new OrderFragement())
+                    .commit();
+        } else if (id == R.id.nav_contactus) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.Content_Frame
+                            , new ContactUsFragement())
+                    .commit();
         }
 
 

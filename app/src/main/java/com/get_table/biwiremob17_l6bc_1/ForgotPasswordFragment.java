@@ -11,14 +11,16 @@ import android.view.ViewGroup;
  * Created by albertcahyawan on 4/4/2017.
  */
 
-public class AboutUsFragement extends  Fragment{
+public class ForgotPasswordFragment extends  Fragment{
 
     View myView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.aboutus_layout, container, false);
+        myView = inflater.inflate(R.layout.forgotpassword_layout, container, false);
         return myView;
     }
+
+
 }
