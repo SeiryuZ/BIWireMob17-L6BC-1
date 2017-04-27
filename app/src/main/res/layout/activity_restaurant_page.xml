@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.get_table.biwiremob17_l6bc_1.RestaurantPage">
+    tools:context="com.get_table.qino.RestaurantPage">
 
     <RelativeLayout
         android:layout_width="375dp"

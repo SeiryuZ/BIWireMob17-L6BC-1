@@ -1,4 +1,4 @@
-package com.get_table.biwiremob17_l6bc_1;
+package com.get_table.qino;
 
 import org.junit.Test;
 

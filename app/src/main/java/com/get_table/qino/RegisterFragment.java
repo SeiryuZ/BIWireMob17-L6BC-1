@@ -1,4 +1,4 @@
-package com.get_table.biwiremob17_l6bc_1;
+package com.get_table.qino;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 
 /**

@@ -1,4 +1,4 @@
-package com.get_table.biwiremob17_l6bc_1;
+package com.get_table.qino;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -11,14 +11,14 @@ import android.view.ViewGroup;
  * Created by albertcahyawan on 4/4/2017.
  */
 
-public class HistoryFragement extends  Fragment{
+public class ContactUsFragement extends  Fragment{
 
     View myView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.history_layout, container, false);
+        myView = inflater.inflate(R.layout.contactus_layout, container, false);
         return myView;
     }
 
