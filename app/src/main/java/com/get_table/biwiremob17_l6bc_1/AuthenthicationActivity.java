@@ -17,7 +17,6 @@ import android.widget.Button;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,22 +26,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
-import java.security.PublicKey;
-
 
 public class AuthenthicationActivity extends AppCompatActivity {
 
@@ -118,46 +106,6 @@ public class AuthenthicationActivity extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    private void signOut() {
-        // Firebase sign out
-        auth.signOut();
-
-        // Google sign out
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-                        updateUI(null);
-                    }
-                });
-    }
-
-    private void revokeAccess() {
-        // Firebase sign out
-        auth.signOut();
-
-        // Google revoke access
-        Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-                        updateUI(null);
-                    }
-                });
-    }
-
-/*
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
-        // be available.
-        Log.d(TAG, "onConnectionFailed:" + connectionResult);
-        Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
-    }
-*/
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -207,8 +155,10 @@ public class AuthenthicationActivity extends AppCompatActivity {
         if (user != null) {
             // myView.findViewById(R.id.sign_in_button).setVisibility(View.GONE);
             //findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+            Toast.makeText(getApplicationContext(), "Signed In!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(AuthenthicationActivity.this, HomePage.class));
             finish();
+
         } else {
             // myView.findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             //findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
@@ -219,7 +169,6 @@ public class AuthenthicationActivity extends AppCompatActivity {
     //Login Page Code Start
 
     public void SignInClicked(View view) {
-
         Input_LUserName = (EditText) findViewById(R.id.Input_LUserName);
         Input_LPassword = (EditText) findViewById(R.id.Input_LPassword);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -262,7 +211,6 @@ public class AuthenthicationActivity extends AppCompatActivity {
                         }
                     }
                 });
-
     }
 
     public void SignUpOnPressed(View view) {
@@ -360,7 +308,7 @@ public class AuthenthicationActivity extends AppCompatActivity {
 
     public void ResetPasswordClicked(View view) {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        inputEmail = (EditText) findViewById(R.id.email);
+        inputEmail = (EditText) findViewById(R.id.femail);
 
         String email = inputEmail.getText().toString().trim();
 

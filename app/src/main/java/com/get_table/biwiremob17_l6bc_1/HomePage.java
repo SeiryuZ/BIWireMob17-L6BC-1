@@ -3,6 +3,7 @@ package com.get_table.biwiremob17_l6bc_1;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -15,9 +16,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "GoogleActivity";
+
+    private FirebaseAuth auth;
+
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +65,46 @@ public class HomePage extends AppCompatActivity
         //Set Homepage
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.Content_Frame,new HomeFragement())
+                .replace(R.id.Content_Frame, new HomeFragement())
                 .commit();
+
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.server_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+                    }
+                })
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        auth = FirebaseAuth.getInstance();
+    }
+
+    public void LogoutPressed(View view) {
+        signOut();
+        Toast.makeText(getApplicationContext(), "Signed Out!", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(HomePage.this, AuthenthicationActivity.class));
+    }
+
+    private void signOut() {
+        // Firebase sign out
+        auth.signOut();
+
+        // Google sign out
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+                        //    updateUI(null);
+                    }
+                });
     }
 
     @Override
@@ -93,9 +149,9 @@ public class HomePage extends AppCompatActivity
         if (id == R.id.nav_home) {
             fragmentManager.beginTransaction()
                     .replace(R.id.Content_Frame
-                    , new HomeFragement())
+                            , new HomeFragement())
                     .commit();
-        }  else if (id == R.id.nav_history) {
+        } else if (id == R.id.nav_history) {
             fragmentManager.beginTransaction()
                     .replace(R.id.Content_Frame
                             , new HistoryFragement())
@@ -113,23 +169,23 @@ public class HomePage extends AppCompatActivity
         }
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    public void RestaurantSearchPressed(View view){
-        Intent intent = new  Intent(this,RestaurantSearch.class);
+    public void RestaurantSearchPressed(View view) {
+        Intent intent = new Intent(this, RestaurantSearch.class);
         startActivity(intent);
     }
 
-    public void  RestaurantPressed(View view){
-        Intent intent = new Intent(this,RestaurantPage.class);
+    public void RestaurantPressed(View view) {
+        Intent intent = new Intent(this, RestaurantPage.class);
         startActivity(intent);
     }
-    public void  LoginPressed(View view){
-        Intent intent = new Intent(this,AuthenthicationActivity.class);
+
+    public void LoginPressed(View view) {
+        Intent intent = new Intent(this, AuthenthicationActivity.class);
         startActivity(intent);
     }
 }

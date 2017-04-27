@@ -20,11 +20,10 @@ public class ForgotPasswordFragment extends  Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.forgotpassword_layout, container, false);
-
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-
+         //((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         return myView;
     }
 
 
 }
+
