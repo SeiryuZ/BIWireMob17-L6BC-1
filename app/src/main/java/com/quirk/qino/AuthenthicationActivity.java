@@ -1,4 +1,4 @@
-package com.get_table.qino;
+package com.quirk.qino;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,14 +28,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.qino.qino.R;
 
 public class AuthenthicationActivity extends AppCompatActivity {
 
     private static final String TAG = "GoogleActivity";
 
-    private EditText Input_REmail, Input_RPassword, Input_LUserName, Input_LPassword, inputEmail;
+    private EditText Input_REmail, Input_RPassword, Input_RPhone, Input_RName, Input_LUserName, Input_LPassword, inputEmail;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
+
     private Toolbar toolbar;
 
     private Button signInButton;
@@ -87,7 +92,7 @@ public class AuthenthicationActivity extends AppCompatActivity {
                 .build();
 
         auth = FirebaseAuth.getInstance();
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -241,19 +246,21 @@ public class AuthenthicationActivity extends AppCompatActivity {
     }
 
     public void RegisterClicked(View view) {
-
-
-
        /* RegisterFragment registerFragment = new RegisterFragment();
         registerFragment.getActivity();
         registerFragment.CreateAccount(view);*/
 
         Input_REmail = (EditText) findViewById(R.id.Input_REmail);
         Input_RPassword = (EditText) findViewById(R.id.Input_RPassword);
+        Input_RPhone = (EditText) findViewById(R.id.Input_RPhone);
+        Input_RName = (EditText) findViewById(R.id.Input_RName);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        String email = Input_REmail.getText().toString().trim();
-        String password = Input_RPassword.getText().toString().trim();
+        final String email = Input_REmail.getText().toString().trim();
+        final String password = Input_RPassword.getText().toString().trim();
+        final String name =  Input_RName.getText().toString().trim();
+        final String phone =  Input_RPhone.getText().toString().trim();
+
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -286,10 +293,19 @@ public class AuthenthicationActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             startActivity(new Intent(AuthenthicationActivity.this, HomePage.class));
+                            writeNewUser(task.getResult().getUser().getUid(), name, email, phone);
                             finish();
                         }
                     }
                 });
+    }
+
+    private void writeNewUser(String userId, String name, String email, String phone) {
+        //User user = new User(name, email);
+        mDatabase.child("users").child(userId).child("Name").setValue(name);
+        mDatabase.child("users").child(userId).child("Email").setValue(email);
+        mDatabase.child("users").child(userId).child("PhoneNumber").setValue(phone);
+
     }
 
     @Override

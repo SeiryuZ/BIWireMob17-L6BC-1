@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.get_table.qino">
+    package="com.qino.qino">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -11,18 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.get_table.qino.HomePage"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name="com.quirk.qino.AuthenthicationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.get_table.qino.RestaurantSearch" />
-        <activity android:name="com.get_table.qino.RestaurantPage"/>
-        <activity android:name="com.get_table.qino.AuthenthicationActivity" />
+        <activity android:name="com.quirk.qino.RestaurantSearch" />
+        <activity android:name="com.quirk.qino.RestaurantPage" />
+        <activity
+            android:name="com.quirk.qino.HomePage"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

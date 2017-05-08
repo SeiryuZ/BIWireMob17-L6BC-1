@@ -1,4 +1,4 @@
-package com.get_table.qino;
+package com.quirk.qino;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import com.qino.qino.R;
 
 /**
  * Created by albertcahyawan on 4/4/2017.

@@ -1,9 +1,11 @@
-package com.get_table.qino;
+package com.quirk.qino;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.qino.qino.R;
 
 public class RestaurantSearch extends AppCompatActivity {
 

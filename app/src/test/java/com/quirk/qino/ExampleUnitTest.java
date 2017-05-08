@@ -1,4 +1,4 @@
-package com.get_table.qino;
+package com.quirk.qino;
 
 import org.junit.Test;
 
