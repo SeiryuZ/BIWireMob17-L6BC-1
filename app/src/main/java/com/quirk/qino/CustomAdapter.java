@@ -18,8 +18,20 @@ import com.qino.qino.R;
 
 public class CustomAdapter extends ArrayAdapter<String>{
 
-    public CustomAdapter(Context context, String[] list_of_restaurant) {
+    private final Context context;
+    private final String[] list_of_restaurant;
+    private final String[] list_of_restaurant_Address;
+    private final Integer[] list_of_restaurant_Image;
+    private final Integer[] list_of_restaurant_Uid;
+
+    public CustomAdapter(Context context,Integer[] list_of_restaurant_Uid,String[] list_of_restaurant, String[] list_of_restaurant_Address, Integer[] list_of_restaurant_Image) {
         super(context, R.layout.custom_restaurant_list_layout, list_of_restaurant);
+
+        this.context=context;
+        this.list_of_restaurant = list_of_restaurant;
+        this.list_of_restaurant_Address = list_of_restaurant_Address;
+        this.list_of_restaurant_Image = list_of_restaurant_Image;
+        this.list_of_restaurant_Uid = list_of_restaurant_Uid;
     }
 
     @Override
@@ -27,12 +39,18 @@ public class CustomAdapter extends ArrayAdapter<String>{
         LayoutInflater restaurantInflater = LayoutInflater.from(getContext());
         View customeView = restaurantInflater.inflate(R.layout.custom_restaurant_list_layout, parent, false);
 
-        String singleRestaurantItem = getItem(position);
+        Integer UidRestaurantItem = list_of_restaurant_Uid[position];
+        String nameRestaurantItem = list_of_restaurant[position];
+        String addressRestaurantItem = list_of_restaurant_Address[position];
+        Integer imgRestaurantItem = list_of_restaurant_Image[position];
+
         TextView restaurantName = (TextView) customeView.findViewById(R.id.restaurant_list_name);
+        TextView restaurantAddress = (TextView) customeView.findViewById(R.id.restaurant_list_address);
         ImageView restaurantImage = (ImageView) customeView.findViewById(R.id.restaurant_list_image);
 
-        restaurantName.setText(singleRestaurantItem);
-        restaurantImage.setImageResource(R.drawable.chinese);
+        restaurantName.setText(nameRestaurantItem);
+        restaurantAddress.setText(addressRestaurantItem);
+        restaurantImage.setImageResource(imgRestaurantItem);
         return customeView;
     }
 }

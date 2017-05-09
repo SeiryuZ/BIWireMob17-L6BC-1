@@ -28,8 +28,12 @@ public class SearchFragment extends Fragment {
         myView = inflater.inflate(R.layout.search_layout, container, false);
 
         //For Creating Restaurant List
-        String[] restaurantList = {"test1", "test2", "test3"};
-        ListAdapter restaurantAdapter = new CustomAdapter(getActivity(),restaurantList);
+        String[] restaurant_Name_List = {"Name1", "Name2", "Name3","Name4"};
+        String[] restaurant_Address_List = {"Address1", "Address2", "Address3","Address4"};
+        Integer[] list_of_restaurant_Image = {R.drawable.chinese,R.drawable.dessert,R.drawable.fastfood,R.drawable.japanese};
+        Integer[] list_of_restaurant_Uid = {1,2,3,4};
+
+        CustomAdapter restaurantAdapter = new CustomAdapter(getActivity(),list_of_restaurant_Uid,restaurant_Name_List,restaurant_Address_List,list_of_restaurant_Image);
         //ListAdapter restaurantAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, restaurantList);
         ListView restaurantListView = (ListView) myView.findViewById(R.id.restaurant_list);
         restaurantListView.setAdapter(restaurantAdapter);
@@ -39,7 +43,8 @@ public class SearchFragment extends Fragment {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String restaurantinfo = String.valueOf(parent.getItemAtPosition(position));
+                        //String restaurantinfo = String.valueOf(parent.getItemAtPosition(position));
+                        String restaurantinfo = String.valueOf(parent.getItemIdAtPosition(position));
                         Toast.makeText(getActivity().getApplicationContext(), restaurantinfo, Toast.LENGTH_SHORT).show();
                     }
                 }

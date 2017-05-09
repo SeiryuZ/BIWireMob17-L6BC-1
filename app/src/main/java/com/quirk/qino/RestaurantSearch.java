@@ -56,6 +56,7 @@ public class RestaurantSearch extends AppCompatActivity {
     }
 
     public void RestaurantPressed(View view) {
+
         /*
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
