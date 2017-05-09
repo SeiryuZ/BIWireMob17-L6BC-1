@@ -9,7 +9,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+
+
+
+import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.qino.qino.R;
 
@@ -17,26 +26,25 @@ import com.qino.qino.R;
  * Created by albertcahyawan on 4/4/2017.
  */
 
-public class RegisterFragment extends Fragment {
+public class RestaurantFragment extends  Fragment{
 
     View myView;
-
-    private ProgressBar progressBar;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.register_layout, container, false);
+        myView = inflater.inflate(R.layout.restaurant_layout, container, false);
 
         //Allow Action Bar
         setHasOptionsMenu(true);
 
 
-        progressBar = (ProgressBar) myView.findViewById(R.id.progressBar);
 
         return myView;
     }
 
+
+    /*
     //Select List for Action Bar
     @Override
     public void onCreateOptionsMenu(
@@ -57,6 +65,9 @@ public class RegisterFragment extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
+*/
 }
+
+
+
+

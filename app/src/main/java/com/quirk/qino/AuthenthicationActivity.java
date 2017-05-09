@@ -57,8 +57,8 @@ public class AuthenthicationActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() != null) {
-            //startActivity(new Intent(AuthenthicationActivity.this, HomePage.class));
-            //finish();
+            startActivity(new Intent(AuthenthicationActivity.this, HomePage.class));
+            finish();
         }
 
         setContentView(R.layout.activity_authenthication);
@@ -305,7 +305,6 @@ public class AuthenthicationActivity extends AppCompatActivity {
         mDatabase.child("users").child(userId).child("Name").setValue(name);
         mDatabase.child("users").child(userId).child("Email").setValue(email);
         mDatabase.child("users").child(userId).child("PhoneNumber").setValue(phone);
-
     }
 
     @Override

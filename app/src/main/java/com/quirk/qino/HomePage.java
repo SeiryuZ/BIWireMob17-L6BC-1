@@ -176,10 +176,6 @@ public class HomePage extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void RestaurantPressed(View view) {
-        Intent intent = new Intent(this, RestaurantPage.class);
-        startActivity(intent);
-    }
 
     public void LoginPressed(View view) {
         Intent intent = new Intent(this, AuthenthicationActivity.class);

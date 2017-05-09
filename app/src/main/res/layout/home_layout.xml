@@ -13,8 +13,7 @@
         android:layout_height="40dp"
         android:layout_alignStart="@+id/textView10"
         android:layout_below="@+id/textView10"
-        android:layout_marginTop="37dp"
-        android:onClick="RestaurantSearchPressed">
+        android:layout_marginTop="37dp" >
 
     </SearchView>
 
@@ -23,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_weight="0.07"
-        android:onClick="RestaurantPressed"
+        android:onClick="RestaurantSearchPressed"
         android:text="@string/cuisine"
         android:textAlignment="center" />
 
@@ -35,8 +34,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:onClick="RestaurantPressed">
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="wrap_content"
