@@ -80,3 +80,13 @@ __Phase 1:__
 2. Login 
 
 __Phase 2:__
+
+1. Functioning Register
+
+2. Functioning Login 
+
+3. Functioning Login with googleaccount
+
+4. Connected to databse Login 
+
+5. Create listview of restaurant
