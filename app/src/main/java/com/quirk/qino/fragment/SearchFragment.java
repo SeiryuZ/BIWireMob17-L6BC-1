@@ -1,4 +1,4 @@
-package com.quirk.qino;
+package com.quirk.qino.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,17 +23,17 @@ public class SearchFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.search_layout, container, false);
+        myView = inflater.inflate(R.layout.restaurant_search_layout, container, false);
 
         //For Creating Restaurant List
         String[] restaurant_Name_List = {"Name1", "Name2", "Name3","Name4"};
         String[] restaurant_Address_List = {"Address1", "Address2", "Address3","Address4"};
         Integer[] list_of_restaurant_Image = {R.drawable.chinese,R.drawable.dessert,R.drawable.fastfood,R.drawable.japanese};
-        Integer[] list_of_restaurant_Uid = {1,2,3,4};
+        final Integer[] list_of_restaurant_Uid = {1,2,3,4};
 
         CustomAdapter restaurantAdapter = new CustomAdapter(getActivity(),list_of_restaurant_Uid,restaurant_Name_List,restaurant_Address_List,list_of_restaurant_Image);
         //ListAdapter restaurantAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, restaurantList);
-        ListView restaurantListView = (ListView) myView.findViewById(R.id.restaurant_list);
+        ListView restaurantListView = (ListView) myView.findViewById(R.id.search_list_RestaurantList);
         restaurantListView.setAdapter(restaurantAdapter);
 
         //Listener for the restaurant list

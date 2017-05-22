@@ -13,17 +13,16 @@
             <SearchView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="RestaurantPressed" />
+                android:onClick="search_btn_RestaurantClicked" />
 
             <Button
-                android:id="@+id/button4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="RestaurantPressed"
+                android:onClick="search_btn_RestaurantClicked"
                 android:text="Go to Restaurant" />
 
             <ListView
-                android:id="@+id/restaurant_list"
+                android:id="@+id/search_list_RestaurantList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />

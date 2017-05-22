@@ -9,16 +9,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.quirk.qino.AuthenthicationActivity">
+            android:name="com.quirk.qino.activity.AuthenthicationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.quirk.qino.RestaurantSearch" />
+        <activity android:name="com.quirk.qino.activity.RestaurantSearch" />
         <activity
-            android:name="com.quirk.qino.HomePage"
+            android:name="com.quirk.qino.activity.HomePage"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

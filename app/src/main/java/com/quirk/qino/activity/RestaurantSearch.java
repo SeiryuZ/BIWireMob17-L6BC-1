@@ -1,13 +1,8 @@
-package com.quirk.qino;
+package com.quirk.qino.activity;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -15,6 +10,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.qino.qino.R;
+import com.quirk.qino.fragment.SearchFragment;
 
 public class RestaurantSearch extends AppCompatActivity {
 
@@ -55,9 +51,8 @@ public class RestaurantSearch extends AppCompatActivity {
 
     }
 
-    public void RestaurantPressed(View view) {
-
         /*
+        //Go to restaurant pages
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.Search_Frame, new RestaurantInfoFragment())
@@ -67,9 +62,6 @@ public class RestaurantSearch extends AppCompatActivity {
         // change icon to arrow drawable
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_camera);
         */
-    }
-
-
 
 }
 

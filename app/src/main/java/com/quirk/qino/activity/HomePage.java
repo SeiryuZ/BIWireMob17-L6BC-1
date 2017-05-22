@@ -1,4 +1,4 @@
-package com.quirk.qino;
+package com.quirk.qino.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +24,10 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.qino.qino.R;
+import com.quirk.qino.fragment.ContactUsFragement;
+import com.quirk.qino.fragment.HistoryFragement;
+import com.quirk.qino.fragment.HomeFragement;
+import com.quirk.qino.fragment.OrderFragement;
 
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +37,7 @@ public class HomePage extends AppCompatActivity
     private FirebaseAuth auth;
 
     private GoogleApiClient mGoogleApiClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,7 @@ public class HomePage extends AppCompatActivity
                 .build();
 
         auth = FirebaseAuth.getInstance();
+
     }
 
     public void LogoutPressed(View view) {
@@ -171,7 +177,7 @@ public class HomePage extends AppCompatActivity
         return true;
     }
 
-    public void RestaurantSearchPressed(View view) {
+    public void home_text_RestaurantSearchPressed(View view) {
         Intent intent = new Intent(this, RestaurantSearch.class);
         startActivity(intent);
     }
