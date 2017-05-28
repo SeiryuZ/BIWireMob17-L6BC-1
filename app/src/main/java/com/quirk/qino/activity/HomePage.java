@@ -1,7 +1,9 @@
 package com.quirk.qino.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -33,6 +35,8 @@ public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "GoogleActivity";
+
+    private SharedPreferences sharedPref;
 
     private FirebaseAuth auth;
 
@@ -87,6 +91,16 @@ public class HomePage extends AppCompatActivity
                 .build();
 
         auth = FirebaseAuth.getInstance();
+
+
+        //Set sharedPref
+        String userId = "test123";
+
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putString("test1", userId);
+        editor.apply();
 
     }
 

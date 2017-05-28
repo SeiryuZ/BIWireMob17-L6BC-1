@@ -1,5 +1,7 @@
 <resources>
-    //Name
+    //Server Id
+    <string name="server_client_id">  101099567098-9s8s9cvld19ea59qsuc6k1sk7cm86cfs.apps.googleusercontent.com </string>
+    // App Name
     <string name="app_name">Qino</string>
 
     //Account
@@ -19,10 +21,13 @@
     //Button
     <string name="login">Login</string>
     <string name="signup">SignUp</string>
-    <string name="register">Register</string>
+
+
     <string name="title_activity_home_page">HomePage</string>
 
+    //Register
     <string name="action_sign_in_short">Register</string>
+
     <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
     <string name="change_email">Change Email</string>
@@ -48,7 +53,15 @@
     <string name="lbl_forgot_password">Forgot password?</string>
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
 
-    <string name="server_client_id">  101099567098-9s8s9cvld19ea59qsuc6k1sk7cm86cfs.apps.googleusercontent.com </string>
+    //HomePage
+    <string name="info_btn_OrderNow">OrderNow</string>
+
+    <string name="info_textview_Phone">Phone:</string>
+    <string name="info_textview_Price">Price:</string>
+    <string name="info_textview_Description">Description:</string>
+    <string name="info_textview_cuisine">Cuisine:</string>
+
+
 
     //HomePage
     <string name="cuisine">Cuisine</string>

@@ -31,7 +31,6 @@ public class RegisterFragment extends Fragment {
         //Allow Action Bar
         setHasOptionsMenu(true);
 
-
         progressBar = (ProgressBar) myView.findViewById(R.id.progressBar);
 
         return myView;

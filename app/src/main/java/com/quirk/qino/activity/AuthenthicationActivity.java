@@ -149,8 +149,6 @@ public class AuthenthicationActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
-
-                        // ...
                     }
                 });
     }
@@ -163,7 +161,6 @@ public class AuthenthicationActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Signed In!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(AuthenthicationActivity.this, HomePage.class));
             finish();
-
         } else {
             // myView.findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             //findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
@@ -173,7 +170,7 @@ public class AuthenthicationActivity extends AppCompatActivity {
 
     //Login Page Code Start
 
-    public void login_btn_SigniInClicked(View view) {
+    public void login_btn_SignInClicked(View view) {
         input_UserName= (EditText) findViewById(R.id.login_input_UserName);
         input_Password = (EditText) findViewById(R.id.login_input_Password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -245,15 +242,6 @@ public class AuthenthicationActivity extends AppCompatActivity {
                 .replace(R.id.Login_Frame, new ForgotPasswordFragment())
                 .addToBackStack(null)
                 .commit();
-    }
-
-    public void register_btn_LoginClicked(View view) {
-        android.app.FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.Login_Frame, new LoginFragment())
-                .addToBackStack(null)
-                .commit();
-        //finish();
     }
 
     public void register_btn_RegisterClicked(View view) {

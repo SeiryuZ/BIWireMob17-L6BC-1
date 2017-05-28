@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.qino.qino.R;
 
@@ -14,24 +13,15 @@ import com.qino.qino.R;
  * Created by albertcahyawan on 4/4/2017.
  */
 
-public class SearchFragment extends Fragment {
+public class RestaurantOrderFragment extends  Fragment{
 
     View myView;
 
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.restaurant_search_layout, container, false);
-
+        myView = inflater.inflate(R.layout.restaurant_info_layout, container, false);
         return myView;
     }
-
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        // Set title
-        getActivity().setTitle("Search Restaurant resume");
-    }
-
 
 }

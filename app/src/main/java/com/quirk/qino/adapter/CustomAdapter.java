@@ -1,4 +1,4 @@
-package com.quirk.qino.fragment;
+package com.quirk.qino.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,20 +12,24 @@ import android.widget.TextView;
 
 import com.qino.qino.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by albertcahyawan on 5/9/2017.
  */
 
-public class CustomAdapter extends ArrayAdapter<String>{
+public class CustomAdapter extends ArrayAdapter{
 
     private final Context context;
-    private final String[] list_of_restaurant;
-    private final String[] list_of_restaurant_Address;
-    private final Integer[] list_of_restaurant_Image;
-    private final Integer[] list_of_restaurant_Uid;
+    private final ArrayList<Object> list_of_restaurant;
+    private final ArrayList<Object> list_of_restaurant_Address;
+    private final ArrayList<Object> list_of_restaurant_Image;
+    private final ArrayList<Object> list_of_restaurant_Uid;
 
-    public CustomAdapter(Context context,Integer[] list_of_restaurant_Uid,String[] list_of_restaurant, String[] list_of_restaurant_Address, Integer[] list_of_restaurant_Image) {
-        super(context, R.layout.custom_restaurant_list_layout, list_of_restaurant);
+    public CustomAdapter(Context context, ArrayList<Object> list_of_restaurant_Uid, ArrayList<Object> list_of_restaurant,
+                         ArrayList<Object> list_of_restaurant_Address,  ArrayList<Object>list_of_restaurant_Image) {
+
+        super(context, R.layout.custom_restaurant_list_layout, list_of_restaurant_Uid);
 
         this.context=context;
         this.list_of_restaurant = list_of_restaurant;
@@ -39,10 +43,10 @@ public class CustomAdapter extends ArrayAdapter<String>{
         LayoutInflater restaurantInflater = LayoutInflater.from(getContext());
         View customeView = restaurantInflater.inflate(R.layout.custom_restaurant_list_layout, parent, false);
 
-        Integer UidRestaurantItem = list_of_restaurant_Uid[position];
-        String nameRestaurantItem = list_of_restaurant[position];
-        String addressRestaurantItem = list_of_restaurant_Address[position];
-        Integer imgRestaurantItem = list_of_restaurant_Image[position];
+        Integer UidRestaurantItem = (Integer) list_of_restaurant_Uid.get(position);
+        String nameRestaurantItem = (String) list_of_restaurant.get(position);
+        String addressRestaurantItem = (String) list_of_restaurant_Address.get(position);
+        Integer imgRestaurantItem = (Integer) list_of_restaurant_Image.get(position);
 
         TextView restaurantName = (TextView) customeView.findViewById(R.id.restaurant_list_name);
         TextView restaurantAddress = (TextView) customeView.findViewById(R.id.restaurant_list_address);
