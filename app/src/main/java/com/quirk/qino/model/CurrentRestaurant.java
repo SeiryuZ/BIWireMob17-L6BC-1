@@ -9,23 +9,20 @@ import java.util.HashMap;
 
 
 public class CurrentRestaurant {
-    public Integer uid;
+    public String uid;
     public String name;
     public String address;
-    public Integer Image;
+    public String Image;
 
-    public CurrentRestaurant() {
-        this.uid = 0;
-        this.name = "";
-        this.address = "";
-        Image = 0;
+    public CurrentRestaurant( ) {
+
     }
 
-    public Integer getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 
@@ -45,11 +42,11 @@ public class CurrentRestaurant {
         this.address = address;
     }
 
-    public Integer getImage() {
+    public String getImage() {
         return Image;
     }
 
-    public void setImage(Integer image) {
+    public void setImage(String image) {
         Image = image;
     }
 }

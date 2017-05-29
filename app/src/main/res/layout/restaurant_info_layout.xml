@@ -18,7 +18,7 @@
             android:padding="@dimen/activity_horizontal_margin">
 
             <ImageView
-                android:id="@+id/info_imageview_RestaurantPhoto"
+                android:id="@+id/info_image_RestaurantPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/japanese" />
@@ -54,14 +54,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/info_textview_Phone"
+                        android:text="@string/info_text_Phone"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/info_textview_phone"
+                        android:id="@+id/info_text_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/info_textview_Phone" />
+                        android:text="@string/info_text_Phone" />
 
                 </TableRow>
 
@@ -73,14 +73,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/info_textview_Price"
+                        android:text="@string/info_text_Price"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/info_textview_Price"
+                        android:id="@+id/info_text_Price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/info_textview_Price" />
+                        android:text="@string/info_text_Price" />
                 </TableRow>
 
                 <TableRow
@@ -91,14 +91,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/info_textview_cuisine"
+                        android:text="@string/info_text_cuisine"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/info_textview_Cuisine"
+                        android:id="@+id/info_text_Cuisine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/info_textview_cuisine" />
+                        android:text="@string/info_text_cuisine" />
                 </TableRow>
 
                 <TableRow
@@ -109,16 +109,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/info_textview_Description"
+                        android:text="@string/info_text_Description"
                         android:textStyle="bold" />
                 </TableRow>
 
                 <TextView
-                    android:id="@+id/info_textview_Description"
+                    android:id="@+id/info_text_Description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="@string/info_textview_Description" />
+                    android:text="@string/info_text_Description" />
 
             </TableLayout>
 

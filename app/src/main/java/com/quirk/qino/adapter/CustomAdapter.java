@@ -26,8 +26,8 @@ public class CustomAdapter extends ArrayAdapter{
     private final ArrayList<Object> list_of_restaurant_Image;
     private final ArrayList<Object> list_of_restaurant_Uid;
 
-    public CustomAdapter(Context context, ArrayList<Object> list_of_restaurant_Uid, ArrayList<Object> list_of_restaurant,
-                         ArrayList<Object> list_of_restaurant_Address,  ArrayList<Object>list_of_restaurant_Image) {
+    public CustomAdapter(Context context,@Nullable ArrayList<Object> list_of_restaurant_Uid,@Nullable ArrayList<Object> list_of_restaurant,
+                         @Nullable ArrayList<Object> list_of_restaurant_Address,@Nullable ArrayList<Object>list_of_restaurant_Image) {
 
         super(context, R.layout.custom_restaurant_list_layout, list_of_restaurant_Uid);
 
@@ -43,10 +43,10 @@ public class CustomAdapter extends ArrayAdapter{
         LayoutInflater restaurantInflater = LayoutInflater.from(getContext());
         View customeView = restaurantInflater.inflate(R.layout.custom_restaurant_list_layout, parent, false);
 
-        Integer UidRestaurantItem = (Integer) list_of_restaurant_Uid.get(position);
+        String UidRestaurantItem = (String) list_of_restaurant_Uid.get(position);
         String nameRestaurantItem = (String) list_of_restaurant.get(position);
         String addressRestaurantItem = (String) list_of_restaurant_Address.get(position);
-        Integer imgRestaurantItem = (Integer) list_of_restaurant_Image.get(position);
+        //Integer imgRestaurantItem = (Integer) list_of_restaurant_Image.get(position);
 
         TextView restaurantName = (TextView) customeView.findViewById(R.id.restaurant_list_name);
         TextView restaurantAddress = (TextView) customeView.findViewById(R.id.restaurant_list_address);
@@ -54,7 +54,7 @@ public class CustomAdapter extends ArrayAdapter{
 
         restaurantName.setText(nameRestaurantItem);
         restaurantAddress.setText(addressRestaurantItem);
-        restaurantImage.setImageResource(imgRestaurantItem);
+        restaurantImage.setImageResource(R.drawable.chinese);//imgRestaurantItem
         return customeView;
     }
 }

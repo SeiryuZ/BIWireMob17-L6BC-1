@@ -1,6 +1,8 @@
 <resources>
     //Server Id
-    <string name="server_client_id">  101099567098-9s8s9cvld19ea59qsuc6k1sk7cm86cfs.apps.googleusercontent.com </string>
+    <string name="server_client_id">101099567098-9s8s9cvld19ea59qsuc6k1sk7cm86cfs.apps.googleusercontent.com</string>
+
+
     // App Name
     <string name="app_name">Qino</string>
 
@@ -56,10 +58,10 @@
     //HomePage
     <string name="info_btn_OrderNow">OrderNow</string>
 
-    <string name="info_textview_Phone">Phone:</string>
-    <string name="info_textview_Price">Price:</string>
-    <string name="info_textview_Description">Description:</string>
-    <string name="info_textview_cuisine">Cuisine:</string>
+    <string name="info_text_Phone">Phone:</string>
+    <string name="info_text_Price">Price:</string>
+    <string name="info_text_Description">Description:</string>
+    <string name="info_text_cuisine">Cuisine:</string>
 
 
 

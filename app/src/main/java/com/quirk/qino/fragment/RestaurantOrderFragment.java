@@ -20,7 +20,7 @@ public class RestaurantOrderFragment extends  Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.restaurant_info_layout, container, false);
+        myView = inflater.inflate(R.layout.restaurant_order_layout, container, false);
         return myView;
     }
 
