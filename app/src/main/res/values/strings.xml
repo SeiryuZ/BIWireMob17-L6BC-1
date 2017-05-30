@@ -56,6 +56,8 @@
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
 
     //HomePage
+    <string name="RestaurantSearch">Search Restaurant</string>
+
     <string name="info_btn_OrderNow">OrderNow</string>
 
     <string name="info_text_Phone">Phone:</string>

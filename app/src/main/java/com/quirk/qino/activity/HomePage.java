@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,7 +26,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.qino.qino.R;
+import com.quirk.qino.fragment.AccountFragement;
 import com.quirk.qino.fragment.ContactUsFragement;
 import com.quirk.qino.fragment.HistoryFragement;
 import com.quirk.qino.fragment.HomeFragement;
@@ -92,16 +99,36 @@ public class HomePage extends AppCompatActivity
 
         auth = FirebaseAuth.getInstance();
 
+        setUserSharedPref();
 
-        //Set sharedPref
-        String userId = "test123";
+    }
 
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPref.edit();
+    private void setUserSharedPref(){
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users").child(auth.getCurrentUser().getUid());
 
-        editor.putString("test1", userId);
-        editor.apply();
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
 
+                //Set sharedPref of user
+                sharedPref = PreferenceManager.getDefaultSharedPreferences(HomePage.this);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
+                editor.putString("UserId", auth.getCurrentUser().getUid());
+                editor.putString("Name", (String) dataSnapshot.child("Name").getValue() );
+                editor.putString("Email", (String) dataSnapshot.child("Email").getValue() );
+                editor.putString("Phone", (String) dataSnapshot.child("PhoneNumber").getValue() );
+
+                editor.apply();
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     public void LogoutPressed(View view) {
@@ -167,6 +194,11 @@ public class HomePage extends AppCompatActivity
             fragmentManager.beginTransaction()
                     .replace(R.id.Content_Frame
                             , new HomeFragement())
+                    .commit();
+        } else if (id == R.id.nav_account) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.Content_Frame
+                            , new AccountFragement())
                     .commit();
         } else if (id == R.id.nav_history) {
             fragmentManager.beginTransaction()

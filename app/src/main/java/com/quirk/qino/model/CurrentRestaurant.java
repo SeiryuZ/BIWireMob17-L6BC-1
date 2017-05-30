@@ -1,5 +1,7 @@
 package com.quirk.qino.model;
 
+import android.app.Application;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,7 +10,7 @@ import java.util.HashMap;
  */
 
 
-public class CurrentRestaurant {
+public class CurrentRestaurant extends Application {
     public String uid;
     public String name;
     public String address;

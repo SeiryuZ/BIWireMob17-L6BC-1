@@ -2,17 +2,21 @@ package com.quirk.qino.activity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +33,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.qino.qino.R;
 import com.quirk.qino.adapter.CustomAdapter;
 import com.quirk.qino.fragment.RestaurantInfoFragment;
@@ -37,6 +43,14 @@ import com.quirk.qino.fragment.SearchFragment;
 import com.quirk.qino.model.CurrentRestaurant;
 import com.quirk.qino.model.ListOfRestaurant;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -56,7 +70,8 @@ public class RestaurantSearch extends AppCompatActivity {
 
     private FirebaseUser user;
 
-    private SharedPreferences sharedPref;
+    private FirebaseStorage storage = FirebaseStorage.getInstance("gs://restaurant-reservatio-app.appspot.com");
+    private StorageReference storageRef = storage.getReference();
 
     private CurrentRestaurant currentRestaurant = new CurrentRestaurant();
     private ListOfRestaurant listofrestaurant = new ListOfRestaurant();
@@ -102,24 +117,47 @@ public class RestaurantSearch extends AppCompatActivity {
 
     }
 
-    public void search_btn_RestaurantClicked(View view) {
-        test = (TextView) findViewById(R.id.search_text_test);
+    private void setRestaurantList(HashMap<String,String> hashmap, String filename) {
 
-        // ged shared pref
-        sharedPref = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        String UserId = sharedPref.getString("test1", "");
-        Log.d(TAG, "Value is: " + UserId);
+        try {
+            FileOutputStream outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(hashmap);
+            objectOutputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        test.setText(" ");
+    }
 
+    private String getRestaurantList(String filename) {
+
+        try {
+            FileInputStream inputStream = openFileInput(filename);
+            ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+
+            Map myNewlyReadInMap = (HashMap) objectInputStream.readObject();
+            objectInputStream.close();
+
+            Toast.makeText(getApplicationContext(), "File contents: " + myNewlyReadInMap.get("test"), Toast.LENGTH_LONG).show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  "test";
+    }
+
+
+    public void search_btn_RestaurantClicked(View view) { 
         final ProgressDialog Dialog = new ProgressDialog(this);
-        Dialog.setMessage("Doing something...");
+        Dialog.setMessage("Searching Restaurant...");
         Dialog.show();
 
         // Read from the database
-        String spice = "spice";
-        mDatabase.orderByChild("Name").startAt(spice).endAt(spice + "\uf8ff").addValueEventListener(new ValueEventListener() {
+        EditText searchtext = (EditText) findViewById(R.id.search_input_searchrestaurant);
+
+        String searchrestaurant = searchtext.getText().toString();
+        mDatabase.orderByChild("Name").startAt(searchrestaurant).endAt(searchrestaurant + "\uf8ff").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -166,40 +204,51 @@ public class RestaurantSearch extends AppCompatActivity {
                 Log.d(TAG, "Value is: " + RestaurantList);
                 Dialog.hide();
 
-                //Make adapter for listView
-                CustomAdapter restaurantAdapter = new CustomAdapter(RestaurantSearch.this, restaurant_Uid, restaurant_Name,
-                        restaurant_Address, restaurant_Uid);
-                ListView restaurantListView = (ListView) findViewById(R.id.search_list_RestaurantList);
-                restaurantListView.setAdapter(restaurantAdapter);
+                if (!RestaurantList.isEmpty()) {
+                    //Make adapter for listView
+                    CustomAdapter restaurantAdapter = new CustomAdapter(RestaurantSearch.this, restaurant_Uid, restaurant_Name,
+                            restaurant_Address, restaurant_Uid);
+                    ListView restaurantListView = (ListView) findViewById(R.id.search_list_RestaurantList);
+                    restaurantListView.setAdapter(restaurantAdapter);
 
 
-                //Listener for the restaurant list
-                restaurantListView.setOnItemClickListener(
-                        new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                String restaurantinfo = String.valueOf(parent.getItemIdAtPosition(position));
-                                int i = Integer.parseInt(restaurantinfo);
+                    //Listener for the restaurant list
+                    restaurantListView.setOnItemClickListener(
+                            new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    String restaurantinfo = String.valueOf(parent.getItemIdAtPosition(position));
+                                    int i = Integer.parseInt(restaurantinfo);
 
-                                //Toast.makeText(getApplicationContext(), restaurantinfo, Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getApplicationContext(), restaurantinfo, Toast.LENGTH_SHORT).show();
 
-                                currentRestaurant.setUid((String) RestaurantList.get("Uid").get(i));
-                                currentRestaurant.setName((String) RestaurantList.get("Name").get(i));
-                                currentRestaurant.setAddress((String) RestaurantList.get("Address").get(i));
-                                //currentRestaurant.setImage((String) RestaurantList.get("image").get(i));
+                                    currentRestaurant.setUid((String) RestaurantList.get("Uid").get(i));
+                                    currentRestaurant.setName((String) RestaurantList.get("Name").get(i));
+                                    currentRestaurant.setAddress((String) RestaurantList.get("Address").get(i));
+                                    //currentRestaurant.setImage((String) RestaurantList.get("image").get(i));
 
-                                //Goes to restaurant page
-                                fragmentManager.beginTransaction()
-                                        .replace(R.id.Search_Frame, new RestaurantInfoFragment())
-                                        .addToBackStack(null)
-                                        .commit();
-                                setTitle(currentRestaurant.getName());
+                                    HashMap <String, String> resto = new HashMap();
+                                    resto.put("Description",(String) RestaurantList.get("Description").get(i));
+                                    resto.put("Phone",(String) RestaurantList.get("Phone").get(i));
+                                    //resto.put("Price",(String) RestaurantList.get("Price").get(i));
+                                    resto.put("Cuisine",(String) RestaurantList.get("Cuisine").get(i));
+
+                                    Toast.makeText(getApplicationContext(), restaurantinfo, Toast.LENGTH_SHORT).show();
+
+                                    setRestaurantList(resto,"CurrentRestaurant");
+
+                                    //Goes to restaurant page
+                                    fragmentManager.beginTransaction()
+                                            .replace(R.id.Search_Frame, new RestaurantInfoFragment())
+                                            .addToBackStack(null)
+                                            .commit();
+                                    setTitle(currentRestaurant.getName());
+
+                                }
                             }
-                        }
-                );
-
+                    );
+                }
             }
-
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
@@ -234,10 +283,22 @@ public class RestaurantSearch extends AppCompatActivity {
                         .replace(R.id.Search_Frame, new RestaurantOrderFragment())
                         .addToBackStack(null)
                         .commit();
+
             }
         });
 
         dialog.show();
+    }
+
+    public void testclick(View view) {
+        //Add new Image
+        ImageView iv = new ImageView(this);
+        iv.setImageResource(R.drawable.chinese);
+        LinearLayout rl = (LinearLayout) findViewById(R.id.order_layout_Linear);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        rl.addView(iv, lp);
     }
 
 }

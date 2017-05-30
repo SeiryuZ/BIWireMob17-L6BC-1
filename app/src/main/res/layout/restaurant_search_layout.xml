@@ -9,17 +9,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
+<!--
             <SearchView
+                android:id="@+id/search_searchview_searchrestaurant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="search_btn_RestaurantClicked" />
+                android:onClick="setOnSearchClickListener" />-->
 
-            <TextView
-                android:id="@+id/search_text_test"
+            <EditText
+                android:id="@+id/search_input_searchrestaurant"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="wrap_content" />
 
             <Button
                 android:layout_width="match_parent"
