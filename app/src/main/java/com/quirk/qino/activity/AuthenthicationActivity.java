@@ -313,6 +313,16 @@ public class AuthenthicationActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
     }
 
+    public void register_btn_LoginClicked(View view){
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.Login_Frame, new LoginFragment())
+                .commit();
+
+        LoginFragment loginFragment = new LoginFragment();
+        loginFragment.getActivity();
+    }
+
     //Register End Of Code
 
     //ForgotPassword Page
