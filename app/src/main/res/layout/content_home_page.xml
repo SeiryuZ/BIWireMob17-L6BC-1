@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.get_table.biwiremob17_l6bc_1.HomePage"
+    tools:context="com.quirk.qino.activity.HomePage"
     tools:showIn="@layout/app_bar_home_page">
     
     <FrameLayout

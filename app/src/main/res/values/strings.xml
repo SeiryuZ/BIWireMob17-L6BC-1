@@ -1,5 +1,9 @@
 <resources>
-    //Name
+    //Server Id
+    <string name="server_client_id">101099567098-9s8s9cvld19ea59qsuc6k1sk7cm86cfs.apps.googleusercontent.com</string>
+
+
+    // App Name
     <string name="app_name">Qino</string>
 
     //Account
@@ -8,13 +12,60 @@
     <string name="lastname">Lastname</string>
     <string name="password">Password</string>
     <string name="repeatpassword">RepeatPassword</string>
-    <string name="phone">Phone</string>
+
+
+    //Hint
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_phone">Phone</string>
+    <string name="hint_name">Fullname</string>
 
     //Button
     <string name="login">Login</string>
     <string name="signup">SignUp</string>
-    <string name="register">Register</string>
+
+
     <string name="title_activity_home_page">HomePage</string>
+
+    //Register
+    <string name="action_sign_in_short">Register</string>
+
+    <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
+    <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
+    <string name="change_email">Change Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="send_password_reset_email">Send Password reset email</string>
+    <string name="remove_user">Remove user</string>
+    <string name="new_pass">New Password</string>
+    <string name="title_activity_profile">Firebase</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_link_to_register">Not a member? Get registered in Firebase now!</string>
+    <string name="btn_link_to_login">Already registered. Login Me!</string>
+    <string name="title_activity_reset_password">ResetPasswordActivity</string>
+    <string name="btn_forgot_password">Forgot your password?</string>
+    <string name="btn_reset_password">Reset Password</string>
+    <string name="btn_back"><![CDATA[<< Back]]></string>
+    <string name="hint_new_email">New Email</string>
+    <string name="btn_change">Change</string>
+    <string name="btn_send">Send</string>
+    <string name="btn_remove">Remove</string>
+    <string name="btn_sign_out">Sign Out</string>
+    <string name="lbl_forgot_password">Forgot password?</string>
+    <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+
+    //HomePage
+    <string name="RestaurantSearch">Search Restaurant</string>
+
+    <string name="info_btn_OrderNow">OrderNow</string>
+
+    <string name="info_text_Phone">Phone:</string>
+    <string name="info_text_Price">Price:</string>
+    <string name="info_text_Description">Description:</string>
+    <string name="info_text_cuisine">Cuisine:</string>
+
+
 
     //HomePage
     <string name="cuisine">Cuisine</string>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "101099567098",
+    "firebase_url": "https://restaurant-reservatio-app.firebaseio.com",
+    "project_id": "restaurant-reservatio-app",
+    "storage_bucket": "restaurant-reservatio-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101099567098:android:d9a677e2889781e5",
+        "android_client_info": {
+          "package_name": "com.get_table.biwiremob17_l6bc_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101099567098-tbc4qadvuthcf71prj3voevuut34ffsd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.get_table.biwiremob17_l6bc_1",
+            "certificate_hash": "9a5489aae194a5cda4a5d51c7f1cda34441e25e0"
+          }
+        },
+        {
+          "client_id": "101099567098-9s8s9cvld19ea59qsuc6k1sk7cm86cfs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmxbOjWjF7F1ltBzs8n6V-gT_1hhI8OUw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101099567098-9s8s9cvld19ea59qsuc6k1sk7cm86cfs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
