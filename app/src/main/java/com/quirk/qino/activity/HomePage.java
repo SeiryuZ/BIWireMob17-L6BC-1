@@ -1,10 +1,13 @@
-package com.quirk.qino;
+package com.quirk.qino.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,16 +26,29 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.qino.qino.R;
+import com.quirk.qino.fragment.AccountFragement;
+import com.quirk.qino.fragment.ContactUsFragement;
+import com.quirk.qino.fragment.HistoryFragement;
+import com.quirk.qino.fragment.HomeFragement;
+import com.quirk.qino.fragment.OrderFragement;
 
 public class HomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "GoogleActivity";
 
+    private SharedPreferences sharedPref;
+
     private FirebaseAuth auth;
 
     private GoogleApiClient mGoogleApiClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +98,37 @@ public class HomePage extends AppCompatActivity
                 .build();
 
         auth = FirebaseAuth.getInstance();
+
+        setUserSharedPref();
+
+    }
+
+    private void setUserSharedPref(){
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users").child(auth.getCurrentUser().getUid());
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+
+                //Set sharedPref of user
+                sharedPref = PreferenceManager.getDefaultSharedPreferences(HomePage.this);
+                SharedPreferences.Editor editor = sharedPref.edit();
+
+                editor.putString("UserId", auth.getCurrentUser().getUid());
+                editor.putString("Name", (String) dataSnapshot.child("Name").getValue() );
+                editor.putString("Email", (String) dataSnapshot.child("Email").getValue() );
+                editor.putString("Phone", (String) dataSnapshot.child("PhoneNumber").getValue() );
+
+                editor.apply();
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     public void LogoutPressed(View view) {
@@ -148,6 +195,11 @@ public class HomePage extends AppCompatActivity
                     .replace(R.id.Content_Frame
                             , new HomeFragement())
                     .commit();
+        } else if (id == R.id.nav_account) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.Content_Frame
+                            , new AccountFragement())
+                    .commit();
         } else if (id == R.id.nav_history) {
             fragmentManager.beginTransaction()
                     .replace(R.id.Content_Frame
@@ -171,7 +223,7 @@ public class HomePage extends AppCompatActivity
         return true;
     }
 
-    public void RestaurantSearchPressed(View view) {
+    public void home_text_RestaurantSearchPressed(View view) {
         Intent intent = new Intent(this, RestaurantSearch.class);
         startActivity(intent);
     }

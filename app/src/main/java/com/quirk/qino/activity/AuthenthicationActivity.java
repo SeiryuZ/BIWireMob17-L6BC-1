@@ -1,4 +1,4 @@
-package com.quirk.qino;
+package com.quirk.qino.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,19 +31,20 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.qino.qino.R;
+import com.quirk.qino.fragment.ForgotPasswordFragment;
+import com.quirk.qino.fragment.LoginFragment;
+import com.quirk.qino.fragment.RegisterFragment;
 
 public class AuthenthicationActivity extends AppCompatActivity {
 
     private static final String TAG = "GoogleActivity";
 
-    private EditText Input_REmail, Input_RPassword, Input_RPhone, Input_RName, Input_LUserName, Input_LPassword, inputEmail;
+    private EditText input_UserName, input_Email, input_Password, input_Phone, input_Name;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
     private DatabaseReference mDatabase;
 
     private Toolbar toolbar;
-
-    private Button signInButton;
 
     private static final int RC_SIGN_IN = 9001;
 
@@ -94,6 +95,8 @@ public class AuthenthicationActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
+
+    //end of onCreate
 
     @Override
     public void onStart() {
@@ -146,8 +149,6 @@ public class AuthenthicationActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
-
-                        // ...
                     }
                 });
     }
@@ -160,7 +161,6 @@ public class AuthenthicationActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Signed In!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(AuthenthicationActivity.this, HomePage.class));
             finish();
-
         } else {
             // myView.findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
             //findViewById(R.id.sign_out_and_disconnect).setVisibility(View.GONE);
@@ -170,13 +170,13 @@ public class AuthenthicationActivity extends AppCompatActivity {
 
     //Login Page Code Start
 
-    public void SignInClicked(View view) {
-        Input_LUserName = (EditText) findViewById(R.id.Input_LUserName);
-        Input_LPassword = (EditText) findViewById(R.id.Input_LPassword);
+    public void login_btn_SignInClicked(View view) {
+        input_UserName= (EditText) findViewById(R.id.login_input_UserName);
+        input_Password = (EditText) findViewById(R.id.login_input_Password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        String email = Input_LUserName.getText().toString();
-        final String password = Input_LPassword.getText().toString();
+        String email = input_UserName.getText().toString();
+        final String password = input_Password.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -202,7 +202,7 @@ public class AuthenthicationActivity extends AppCompatActivity {
                         if (!task.isSuccessful()) {
                             // there was an error
                             if (password.length() < 6) {
-                                Input_RPassword.setError(getString(R.string.minimum_password));
+                                input_Password.setError(getString(R.string.minimum_password));
                             } else {
                                 Toast.makeText(AuthenthicationActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                             }
@@ -215,10 +215,18 @@ public class AuthenthicationActivity extends AppCompatActivity {
                 });
     }
 
-    public void SignUpOnPressed(View view) {
+    public void login_btn_SignUpClicked(View view) {
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.Login_Frame, new RegisterFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void login_btn_ForgotPasswordClicked(View view) {
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.Login_Frame, new ForgotPasswordFragment())
                 .addToBackStack(null)
                 .commit();
     }
@@ -228,7 +236,7 @@ public class AuthenthicationActivity extends AppCompatActivity {
 
     //Register Page Code Start
 
-    public void ForgotPasswordClicked(View view) {
+    public void register_btn_ForgotPasswordClicked(View view) {
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.Login_Frame, new ForgotPasswordFragment())
@@ -236,30 +244,21 @@ public class AuthenthicationActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void LoginClicked(View view) {
-        android.app.FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.Login_Frame, new LoginFragment())
-                .addToBackStack(null)
-                .commit();
-        //finish();
-    }
-
-    public void RegisterClicked(View view) {
+    public void register_btn_RegisterClicked(View view) {
        /* RegisterFragment registerFragment = new RegisterFragment();
         registerFragment.getActivity();
         registerFragment.CreateAccount(view);*/
 
-        Input_REmail = (EditText) findViewById(R.id.Input_REmail);
-        Input_RPassword = (EditText) findViewById(R.id.Input_RPassword);
-        Input_RPhone = (EditText) findViewById(R.id.Input_RPhone);
-        Input_RName = (EditText) findViewById(R.id.Input_RName);
+        input_Email = (EditText) findViewById(R.id.register_input_Email);
+        input_Password = (EditText) findViewById(R.id.register_input_Password);
+        input_Phone = (EditText) findViewById(R.id.register_input_Phone);
+        input_Name = (EditText) findViewById(R.id.register_input_Name);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        final String email = Input_REmail.getText().toString().trim();
-        final String password = Input_RPassword.getText().toString().trim();
-        final String name =  Input_RName.getText().toString().trim();
-        final String phone =  Input_RPhone.getText().toString().trim();
+        final String email = input_Email.getText().toString().trim();
+        final String password = input_Password.getText().toString().trim();
+        final String name =  input_Name.getText().toString().trim();
+        final String phone =  input_Phone.getText().toString().trim();
 
 
         if (TextUtils.isEmpty(email)) {
@@ -314,15 +313,25 @@ public class AuthenthicationActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
     }
 
+    public void register_btn_LoginClicked(View view){
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.Login_Frame, new LoginFragment())
+                .commit();
+
+        LoginFragment loginFragment = new LoginFragment();
+        loginFragment.getActivity();
+    }
+
     //Register End Of Code
 
     //ForgotPassword Page
 
-    public void ResetPasswordClicked(View view) {
+    public void forgotpassword_btn_ResetPasswordClicked(View view) {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        inputEmail = (EditText) findViewById(R.id.femail);
+        input_Email = (EditText) findViewById(R.id.forgotpassword_input_Email);
 
-        String email = inputEmail.getText().toString().trim();
+        String email = input_Email.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplication(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
@@ -345,7 +354,7 @@ public class AuthenthicationActivity extends AppCompatActivity {
                 });
     }
 
-    public void BackClicked(View view) {
+    public void forgotpassword_btn_BackClicked(View view) {
         android.app.FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.popBackStack();
     }

@@ -1,4 +1,4 @@
-package com.quirk.qino;
+package com.quirk.qino.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -26,11 +26,10 @@ public class RegisterFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.register_layout, container, false);
+        myView = inflater.inflate(R.layout.authenthication_register_layout, container, false);
 
         //Allow Action Bar
         setHasOptionsMenu(true);
-
 
         progressBar = (ProgressBar) myView.findViewById(R.id.progressBar);
 
