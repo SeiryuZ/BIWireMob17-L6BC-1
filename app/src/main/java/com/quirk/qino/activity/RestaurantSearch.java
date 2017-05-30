@@ -117,7 +117,7 @@ public class RestaurantSearch extends AppCompatActivity {
 
     }
 
-    private void setRestaurantList(HashMap<String,String> hashmap, String filename) {
+    private void setRestaurantList(HashMap<String, String> hashmap, String filename) {
 
         try {
             FileOutputStream outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
@@ -144,11 +144,11 @@ public class RestaurantSearch extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return  "test";
+        return "test";
     }
 
 
-    public void search_btn_RestaurantClicked(View view) { 
+    public void search_btn_RestaurantClicked(View view) {
         final ProgressDialog Dialog = new ProgressDialog(this);
         Dialog.setMessage("Searching Restaurant...");
         Dialog.show();
@@ -175,36 +175,35 @@ public class RestaurantSearch extends AppCompatActivity {
                 // Create a hash map
                 final HashMap<String, ArrayList<Object>> RestaurantList = (HashMap<String, ArrayList<Object>>) dataSnapshot.getValue();
 
-                // Get an iterator
-                Iterator i = RestaurantList.entrySet().iterator();
+                if (RestaurantList != null) {
+                    // Get an iterator
+                    Iterator i = RestaurantList.entrySet().iterator();
 
-                // Display elements
-                while (i.hasNext()) {
-                    Map.Entry me = (Map.Entry) i.next();
-                    restaurant_Uid.add(me.getKey());
+                    // Display elements
+                    while (i.hasNext()) {
+                        Map.Entry me = (Map.Entry) i.next();
+                        restaurant_Uid.add(me.getKey());
 
-                    restaurant_Name.add(dataSnapshot.child((String) me.getKey()).child("Name").getValue());
-                    restaurant_Phone.add(dataSnapshot.child((String) me.getKey()).child("Phone").getValue());
-                    restaurant_Address.add(dataSnapshot.child((String) me.getKey()).child("Address").getValue());
-                    restaurant_Cuisine.add(dataSnapshot.child((String) me.getKey()).child("Cuisine").getValue());
-                    restaurant_Description.add(dataSnapshot.child((String) me.getKey()).child("Description").getValue());
-                }
-                RestaurantList.clear();
-                RestaurantList.put("Uid", restaurant_Uid);
-                RestaurantList.put("Cuisine", restaurant_Cuisine);
-                RestaurantList.put("Name", restaurant_Name);
-                RestaurantList.put("Phone", restaurant_Phone);
-                RestaurantList.put("Address", restaurant_Address);
-                RestaurantList.put("Description", restaurant_Description);
-                RestaurantList.put("Image", restaurant_Image);
+                        restaurant_Name.add(dataSnapshot.child((String) me.getKey()).child("Name").getValue());
+                        restaurant_Phone.add(dataSnapshot.child((String) me.getKey()).child("Phone").getValue());
+                        restaurant_Address.add(dataSnapshot.child((String) me.getKey()).child("Address").getValue());
+                        restaurant_Cuisine.add(dataSnapshot.child((String) me.getKey()).child("Cuisine").getValue());
+                        restaurant_Description.add(dataSnapshot.child((String) me.getKey()).child("Description").getValue());
+                    }
+                    RestaurantList.clear();
+                    RestaurantList.put("Uid", restaurant_Uid);
+                    RestaurantList.put("Cuisine", restaurant_Cuisine);
+                    RestaurantList.put("Name", restaurant_Name);
+                    RestaurantList.put("Phone", restaurant_Phone);
+                    RestaurantList.put("Address", restaurant_Address);
+                    RestaurantList.put("Description", restaurant_Description);
+                    RestaurantList.put("Image", restaurant_Image);
 
-                //Set the restaurant list in the class
-                listofrestaurant.setRestaurantList(RestaurantList);
+                    //Set the restaurant list in the class
+                    listofrestaurant.setRestaurantList(RestaurantList);
 
-                Log.d(TAG, "Value is: " + RestaurantList);
-                Dialog.hide();
+                    Log.d(TAG, "Value is: " + RestaurantList);
 
-                if (!RestaurantList.isEmpty()) {
                     //Make adapter for listView
                     CustomAdapter restaurantAdapter = new CustomAdapter(RestaurantSearch.this, restaurant_Uid, restaurant_Name,
                             restaurant_Address, restaurant_Uid);
@@ -227,15 +226,15 @@ public class RestaurantSearch extends AppCompatActivity {
                                     currentRestaurant.setAddress((String) RestaurantList.get("Address").get(i));
                                     //currentRestaurant.setImage((String) RestaurantList.get("image").get(i));
 
-                                    HashMap <String, String> resto = new HashMap();
-                                    resto.put("Description",(String) RestaurantList.get("Description").get(i));
-                                    resto.put("Phone",(String) RestaurantList.get("Phone").get(i));
+                                    HashMap<String, String> resto = new HashMap();
+                                    resto.put("Description", (String) RestaurantList.get("Description").get(i));
+                                    resto.put("Phone", (String) RestaurantList.get("Phone").get(i));
                                     //resto.put("Price",(String) RestaurantList.get("Price").get(i));
-                                    resto.put("Cuisine",(String) RestaurantList.get("Cuisine").get(i));
+                                    resto.put("Cuisine", (String) RestaurantList.get("Cuisine").get(i));
 
                                     Toast.makeText(getApplicationContext(), restaurantinfo, Toast.LENGTH_SHORT).show();
 
-                                    setRestaurantList(resto,"CurrentRestaurant");
+                                    setRestaurantList(resto, "CurrentRestaurant");
 
                                     //Goes to restaurant page
                                     fragmentManager.beginTransaction()
@@ -247,8 +246,13 @@ public class RestaurantSearch extends AppCompatActivity {
                                 }
                             }
                     );
+                }else{
+                    Toast.makeText(getApplicationContext(), "Restaurant Is not found", Toast.LENGTH_SHORT).show();
                 }
+
+                Dialog.hide();
             }
+
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
